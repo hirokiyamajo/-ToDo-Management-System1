@@ -1,13 +1,16 @@
 package com.dmm.task1.service;
 
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.dmm.task1.data.entity.Tasks;
 
-public class AccountTaskDetails implements UserDetails{
+public class AccountUserDetails implements UserDetails{
 	private Tasks task;
 
-	public AccountTaskDetails(Tasks task) {
+	public AccountUserDetails(Tasks task) {
 		this.task = task;
 	}
 
@@ -29,9 +32,7 @@ public class AccountTaskDetails implements UserDetails{
 		return task.getText();
 	}
 	
-	public LocalDatetime getDate() {
-		return task.getName();
-	}
+	
 	
 	public boolean isDone() {
 		return true;
@@ -66,5 +67,22 @@ public class AccountTaskDetails implements UserDetails{
 		return task;
 	}
 
-	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public String getPassword() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
 }
