@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.dmm.task1.data.entity.Tasks;
 
+
 public class AccountUserDetails implements UserDetails{
 	private Tasks task;
 
@@ -18,16 +19,16 @@ public class AccountUserDetails implements UserDetails{
 	public Long getId() {
 		return task.getId();
 	}
-	
+		
 	public String getTitle() {
 		return task.getTitle();
 	}
 
-	
+		
 	public String getName() {
 		return task.getName();
 	}
-	
+		
 	public String getText() {
 		return task.getText();
 	}

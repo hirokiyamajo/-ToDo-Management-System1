@@ -9,27 +9,23 @@ import org.springframework.stereotype.Service;
 import com.dmm.task1.data.entity.Tasks;
 import com.dmm.task1.data.repository.TasksRepository;
 
-@Service
-public class AccountUserDetailsService implements UserDetailsService{
+@Service // Spring管理Beanであることを指定
+public class AccountUserDetailsService implements UserDetailsService {
+
 	@Autowired
 	private TasksRepository repository;
 
-	public UserDetails loadUserByUsername(Long id) throws UsernameNotFoundException {
-		if (id == null || "".equals(id)) {
+	@Override
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+		if (userName == null || "".equals(userName)) {
 			throw new UsernameNotFoundException("ユーザー名が空です");
 		}
 		// データベースからアカウント情報を取得する
-		Tasks user = repository.findById(id).get();
+		Tasks user = repository.findById(userName).get();
 		if (user != null) {
 			// UserDetailsの実装クラスを生成して返す
 			return new AccountUserDetails(user);
 		}
-		throw new UsernameNotFoundException(id + "は見つかりません。");
-	}
-
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		throw new UsernameNotFoundException(userName + "は見つかりません。");
 	}
 }
